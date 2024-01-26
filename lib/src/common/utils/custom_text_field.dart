@@ -5,12 +5,18 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final Widget? prefix;
+  final int? maxLines;
+  final double topPadding;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     required this.mainText,
     required this.hintText,
+    this.topPadding = 0,
     this.controller,
     this.prefix,
+    this.maxLines,
+    this.validator,
     super.key,
   });
 
@@ -26,14 +32,13 @@ class CustomTextField extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 5),
-        TextField(
+        TextFormField(
+          validator: validator,
           controller: controller,
+          maxLines: maxLines,
           decoration: InputDecoration(
             prefixIcon: prefix,
-            prefixStyle: TextStyle(
-                color: Colors.black,
-            ),
-            contentPadding: const EdgeInsets.only(left: 10),
+            contentPadding: EdgeInsets.only(left: 10, top: topPadding),
             hintText: hintText,
             hintStyle: const TextStyle(
               color: Color(0xFF949CA9),

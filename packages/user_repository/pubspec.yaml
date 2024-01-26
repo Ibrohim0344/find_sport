@@ -16,11 +16,23 @@ dependencies:
 
   equatable: ^2.0.5
 
+  #retrofit
+  retrofit: ^4.0.3
+  dio: ^5.4.0
+  built_value: ^8.9.0
+  json_annotation: ^4.8.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+
+  #retrofit
+  retrofit_generator: ^8.0.6
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  built_value_generator: ^8.9.0
 
 flutter:
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../common/service/l10n/app_localizations.dart';
 import '../../../common/utils/custom_text_field.dart';
+import '../../add_new_ad/new_ad_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -66,26 +67,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: SizedBox(
-              width: size.width * .7,
-              height: 45,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color(0xFF01001F).withOpacity(.68),
-                      const Color(0xFF01001F),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const NewAd(),
                 ),
-                child: Center(
-                  child: Text(
-                    l10n.save,
-                    style: textTheme.titleLarge?.copyWith(
-                      color: Colors.white,
+              ),
+              child: SizedBox(
+                width: size.width * .7,
+                height: 45,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFF01001F).withOpacity(.68),
+                        const Color(0xFF01001F),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      l10n.save,
+                      style: textTheme.titleLarge?.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
