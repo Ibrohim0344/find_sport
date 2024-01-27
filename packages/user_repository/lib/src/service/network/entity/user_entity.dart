@@ -4,27 +4,27 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_entity.g.dart';
 
 @JsonSerializable()
-class MyUserEntity extends Equatable {
+class UserEntity extends Equatable {
   @JsonKey(name: "firstname")
-  final String firstName;
+  final String? firstName;
 
   @JsonKey(name: "lastname")
-  final String lastName;
+  final String? lastName;
 
   @JsonKey(name: "phone")
-  final String phone;
+  final String? phone;
 
   @JsonKey(name: "password")
-  final String password;
+  final String? password;
 
-  const MyUserEntity({
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
-    required this.password,
+  const UserEntity({
+    this.firstName,
+    this.lastName,
+    this.phone,
+    this.password,
   });
 
-  factory MyUserEntity.fromJson(Map<String, dynamic> json) =>
+  factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$MyUserEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$MyUserEntityToJson(this);

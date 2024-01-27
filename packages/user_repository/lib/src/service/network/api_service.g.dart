@@ -21,7 +21,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<LoginResponse> login(Map<String, dynamic> body) async {
+  Future<Response<dynamic>> login(Map<String, dynamic> body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -44,12 +44,11 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = LoginResponse.fromJson(_result.data!);
-    return value;
+    return _result;
   }
 
   @override
-  Future<dynamic> register(Map<String, dynamic> body) async {
+  Future<Response<dynamic>> register(Map<String, dynamic> body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -71,8 +70,7 @@ class _ApiService implements ApiService {
           _dio.options.baseUrl,
           baseUrl,
         ))));
-    final value = _result.data;
-    return value;
+    return _result;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

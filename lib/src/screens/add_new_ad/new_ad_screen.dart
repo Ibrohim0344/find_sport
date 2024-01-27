@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../common/service/l10n/app_localizations.dart';
 import '../../common/utils/custom_text_field.dart';
@@ -31,44 +32,50 @@ class NewAd extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                CustomTextField(
-                  mainText: l10n.title,
-                  hintText: l10n.enterProductTitle,
-                ),
-                CustomTextField(
-                  mainText: l10n.description,
-                  hintText: l10n.enterDescription,
-                  maxLines: 8,
-                  topPadding: 16,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Row(
-                    children: [
-                      const Expanded(child: Divider()),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(l10n.changeLocation),
-                      ),
-                      const Expanded(child: Divider()),
-                    ],
-                  ),
-                ),
-                CustomTextField(
-                  mainText: l10n.addressByLocation,
-                  hintText: l10n.enterAddress,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      // body: ListView(
+      //   children: [
+      //     Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal: 20),
+      //       child: Column(
+      //         children: [
+      //           CustomTextField(
+      //             mainText: l10n.title,
+      //             hintText: l10n.enterProductTitle,
+      //           ),
+      //           CustomTextField(
+      //             mainText: l10n.description,
+      //             hintText: l10n.enterDescription,
+      //             maxLines: 8,
+      //             topPadding: 16,
+      //           ),
+      //           Padding(
+      //             padding: const EdgeInsets.symmetric(vertical: 20),
+      //             child: Row(
+      //               children: [
+      //                 const Expanded(child: Divider()),
+      //                 Padding(
+      //                   padding: const EdgeInsets.symmetric(horizontal: 15),
+      //                   child: Text(l10n.changeLocation),
+      //                 ),
+      //                 const Expanded(child: Divider()),
+      //               ],
+      //             ),
+      //           ),
+      //           CustomTextField(
+      //             mainText: l10n.addressByLocation,
+      //             hintText: l10n.enterAddress,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     SizedBox(
+      //       width: double.infinity,
+      //       height: 300,
+      //       child: YandexMap(),
+      //     ),
+      //   ],
+      // ),
+      body: const YandexMap(),
     );
   }
 }

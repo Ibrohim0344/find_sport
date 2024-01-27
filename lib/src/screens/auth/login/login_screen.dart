@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:user_repository/user_repository.dart';
 
 import '../../../common/service/l10n/app_localizations.dart';
 import '../../../common/utils/custom_text_field.dart';
@@ -12,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late final TextEditingController firstNameController;
+  late final TextEditingController passwordController;
   final _formKey = GlobalKey<FormState>();
 
   void validate() {
@@ -24,13 +28,38 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void loginUser(
+    BuildContext context, {
+    required String firstName,
+    required String password,
+  }) async {
+    final dio = Dio();
+    final myApi = ApiService(dio);
+
+    final user = UserEntity(
+      firstName: firstName,
+      password: password,
+    );
+
+    final response = await myApi
+        .register(user.toJson())
+        .then((value) => print("response value: $value"));
+
+    validate();
+  }
+
+  @override
+  void initState() {
+    firstNameController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final l10n = AppLocalizations.of(context);
-    final textTheme = Theme
-        .of(context)
-        .textTheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       body: Form(
@@ -71,7 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: GestureDetector(
-                onTap: validate,
+                onTap: () => loginUser(
+                  context,
+                  firstName: firstNameController.text,
+                  password: passwordController.text,
+                ),
                 child: SizedBox(
                   width: size.width * .7,
                   height: 45,

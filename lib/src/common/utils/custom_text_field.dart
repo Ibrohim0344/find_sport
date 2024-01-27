@@ -5,7 +5,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final Widget? prefix;
-  final int? maxLines;
+  final int maxLines;
   final double topPadding;
   final String? Function(String?)? validator;
 
@@ -13,9 +13,9 @@ class CustomTextField extends StatelessWidget {
     required this.mainText,
     required this.hintText,
     this.topPadding = 0,
+    this.maxLines = 1,
     this.controller,
     this.prefix,
-    this.maxLines,
     this.validator,
     super.key,
   });
@@ -33,6 +33,7 @@ class CustomTextField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          textInputAction: TextInputAction.next,
           validator: validator,
           controller: controller,
           maxLines: maxLines,
