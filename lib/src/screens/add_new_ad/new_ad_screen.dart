@@ -13,6 +13,7 @@ class NewAd extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,11 +34,11 @@ class NewAd extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
+      body: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
+            child: ListView(
               children: [
                 CustomTextField(
                   mainText: l10n.title,
@@ -66,16 +67,36 @@ class NewAd extends StatelessWidget {
                   mainText: l10n.addressByLocation,
                   hintText: l10n.enterAddress,
                 ),
+                SizedBox(height: size.width + 30),
               ],
             ),
           ),
-          SizedBox.square(
-            dimension: size.width,
-            child: const YandexMap(),
+          Column(
+            children: [
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  top: 15,
+                  right: 15,
+                  bottom: 10,
+                ),
+                child: ClipRRect(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  child: SizedBox.square(
+                    dimension: size.width,
+                    child: const YandexMap(
+                      mode2DEnabled: true,
+                      rotateGesturesEnabled: false,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
-
     );
   }
 }
